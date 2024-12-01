@@ -6,7 +6,7 @@ public partial class Plane : CharacterBody2D
 	// Movement and gravity properties
 	[Export] private float Gravity { get; set; } = 800.0f;
 	[Export] private float FlapImpulse { get; set; } = -400.0f;
-	[Export] private float HorizontalSpeed { get; set; } = 200.0f;
+	[Export] private float HorizontalSpeed { get; set; } = 100.0f;
 	[Export] private float AltitudeThreshold { get; set; } = 25.0f;
 
 	// References to nodes
@@ -34,7 +34,7 @@ public partial class Plane : CharacterBody2D
 		Velocity += new Vector2(0, Gravity * (float)delta);
 
 		// Set horizontal speed
-		//Velocity = new Vector2(HorizontalSpeed, Velocity.Y);
+		Velocity = new Vector2(HorizontalSpeed, Velocity.Y);
 
 		MoveAndSlide();
 	}
