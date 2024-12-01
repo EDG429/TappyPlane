@@ -31,10 +31,7 @@ public partial class Plane : CharacterBody2D
 
 		}
 		// Apply gravity
-		Velocity += new Vector2(0, Gravity * (float)delta);
-
-		// Set horizontal speed
-		Velocity = new Vector2(HorizontalSpeed, Velocity.Y);
+		Velocity += new Vector2(0, Gravity * (float)delta);		
 
 		MoveAndSlide();
 	}

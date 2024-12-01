@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://724uda00mno2"]
+[gd_scene load_steps=7 format=3 uid="uid://724uda00mno2"]
 
 [ext_resource type="Texture2D" uid="uid://duay2pibv5bva" path="res://assets/background/rocks_2.png" id="1_0xcla"]
+[ext_resource type="Script" path="res://scripts/Game.cs" id="1_i0pbj"]
 [ext_resource type="PackedScene" uid="uid://dd6te2to4trvi" path="res://scenes/Plane.tscn" id="2_takgt"]
 [ext_resource type="PackedScene" uid="uid://d1xiiuh5o01oj" path="res://scenes/Pipes.tscn" id="3_youso"]
 
@@ -9,13 +10,15 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oc6fi"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_i0pbj")
+pipes = ExtResource("3_youso")
 
 [node name="bg" type="Sprite2D" parent="."]
 position = Vector2(163, 325)
 texture = ExtResource("1_0xcla")
 
 [node name="Plane" parent="." instance=ExtResource("2_takgt")]
-position = Vector2(113, 392)
+position = Vector2(250, 427)
 
 [node name="UpperBound" type="StaticBody2D" parent="."]
 position = Vector2(0, -1)
@@ -35,4 +38,13 @@ rotation = -3.13814
 shape = SubResource("WorldBoundaryShape2D_oc6fi")
 
 [node name="Pipes" parent="." instance=ExtResource("3_youso")]
-position = Vector2(248, 673)
+position = Vector2(402, 673)
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 74.0
+offset_bottom = 24.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "Score = 0"
