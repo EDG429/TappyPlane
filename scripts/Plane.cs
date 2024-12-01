@@ -4,34 +4,38 @@ using System;
 public partial class Plane : CharacterBody2D
 {
 	// Movement and gravity properties
-	[Export] public float Gravity = 800.0f;
-	[Export] public float FlapImpulse = -400.0f;
-	[Export] public float HorizontalSpeed = 200.0f;
+	[Export] private float Gravity { get; set; } = 800.0f;
+	[Export] private float FlapImpulse { get; set; } = -400.0f;
+	[Export] private float HorizontalSpeed { get; set; } = 200.0f;
+	[Export] private float AltitudeThreshold { get; set; } = 25.0f;
+
+	// References to nodes
+	private AnimationPlayer animationPlayer;
+
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// Get the AnimationPlayer node
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
-		// Apply gravity
-		Vector2 velocity = Velocity;
-		
-		
-		
-
 		// Make the plane fly
-		if (Input.IsActionJustPressed("fly") && GlobalPosition.Y > 25 )
+		if (Input.IsActionJustPressed("fly") && GlobalPosition.Y > AltitudeThreshold)
 		{
-			GD.Print("flying!");
-			velocity.Y = FlapImpulse;
+			Velocity = new Vector2(Velocity.X, FlapImpulse);
+			animationPlayer.Play("power");
+
 		}
-		velocity.Y += Gravity * (float)delta;
-		Velocity = velocity;
+		// Apply gravity
+		Velocity += new Vector2(0, Gravity * (float)delta);
+
+		// Set horizontal speed
+		//Velocity = new Vector2(HorizontalSpeed, Velocity.Y);
+
 		MoveAndSlide();
 	}
-
-	
 }

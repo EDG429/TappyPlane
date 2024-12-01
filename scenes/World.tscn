@@ -1,13 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://724uda00mno2"]
+[gd_scene load_steps=6 format=3 uid="uid://724uda00mno2"]
 
 [ext_resource type="Texture2D" uid="uid://duay2pibv5bva" path="res://assets/background/rocks_2.png" id="1_0xcla"]
 [ext_resource type="PackedScene" uid="uid://dd6te2to4trvi" path="res://scenes/Plane.tscn" id="2_takgt"]
+[ext_resource type="PackedScene" uid="uid://d1xiiuh5o01oj" path="res://scenes/Pipes.tscn" id="3_youso"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uf7ww"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oc6fi"]
 
 [node name="Game" type="Node2D"]
 
 [node name="bg" type="Sprite2D" parent="."]
-position = Vector2(157, 306)
+position = Vector2(163, 325)
 texture = ExtResource("1_0xcla")
 
 [node name="Plane" parent="." instance=ExtResource("2_takgt")]
 position = Vector2(113, 392)
+
+[node name="UpperBound" type="StaticBody2D" parent="."]
+position = Vector2(0, -1)
+physics_material_override = SubResource("PhysicsMaterial_uf7ww")
+
+[node name="collisionShape2d" type="CollisionShape2D" parent="UpperBound"]
+rotation = -3.13814
+shape = SubResource("WorldBoundaryShape2D_oc6fi")
+
+[node name="LowerBound" type="StaticBody2D" parent="."]
+position = Vector2(0, 852)
+rotation = -3.14159
+physics_material_override = SubResource("PhysicsMaterial_uf7ww")
+
+[node name="collisionShape2d" type="CollisionShape2D" parent="LowerBound"]
+rotation = -3.13814
+shape = SubResource("WorldBoundaryShape2D_oc6fi")
+
+[node name="Pipes" parent="." instance=ExtResource("3_youso")]
+position = Vector2(248, 673)
