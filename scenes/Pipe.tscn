@@ -6,7 +6,7 @@
 size = Vector2(70, 560)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jl12c"]
-size = Vector2(50, 53)
+size = Vector2(50, 34)
 
 [node name="Pipe" type="Area2D"]
 position = Vector2(0, 315)
@@ -19,5 +19,5 @@ position = Vector2(0, 35)
 shape = SubResource("RectangleShape2D_qo8i7")
 
 [node name="collisionShape2d2" type="CollisionShape2D" parent="."]
-position = Vector2(0, -271.5)
+position = Vector2(0, -262)
 shape = SubResource("RectangleShape2D_jl12c")

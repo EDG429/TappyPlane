@@ -4,8 +4,11 @@
 [ext_resource type="Script" path="res://scripts/Pipes.cs" id="1_5kdec"]
 [ext_resource type="PackedScene" uid="uid://dyfsra7pkmojv" path="res://scenes/Pipe.tscn" id="1_f1c52"]
 
-[node name="Pipes" type="Node2D"]
+[node name="Pipes" type="Node2D" node_paths=PackedStringArray("_upperPipe", "_lowerPipe", "_laser")]
 script = ExtResource("1_5kdec")
+_upperPipe = NodePath("Pipe2")
+_lowerPipe = NodePath("Pipe")
+_laser = NodePath("Laser")
 
 [node name="Laser" parent="." instance=ExtResource("1_0ke34")]
 

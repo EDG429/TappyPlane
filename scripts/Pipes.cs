@@ -4,6 +4,9 @@ using System;
 public partial class Pipes : Node2D
 {
 	[Export] public float Speed = 150.0f;
+	[Export] private Area2D _upperPipe;
+	[Export] private Area2D _lowerPipe;
+	[Export] private Area2D _laser;
 	private VisibleOnScreenNotifier2D visibleNotifier;
 
 	// Called when the node enters the scene tree for the first time.
@@ -14,6 +17,27 @@ public partial class Pipes : Node2D
 		
 		// Connect the screen_exited signal to the OnScreenExited method
 		visibleNotifier.ScreenExited += OnScreenExited;
+
+		// Connect to Signals that detect plane collision
+		_lowerPipe.BodyEntered += OnPipeBodyEntered;
+		_upperPipe.BodyEntered += OnPipeBodyEntered;
+		_laser.BodyEntered += OnLaserBodyEntered;
+	}
+
+	private void OnPipeBodyEntered(Node2D body)
+	{
+		if (body is Plane)
+		{
+			(body as Plane).Die();
+		}
+	}
+
+	private void OnLaserBodyEntered(Node2D body)
+	{
+		if (body is Plane)
+		{
+			// Score increment
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +54,3 @@ public partial class Pipes : Node2D
 	}
 }
 
-// Notes:
-// 1. Attach this script to the Pipes scene.
-// 2. The pipes will move to the left at the specified speed and will be removed when they are no longer visible on screen.
-// 3. You can adjust the 'Speed' variable in the Godot editor to tweak how fast the pipes move.

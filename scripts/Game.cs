@@ -2,7 +2,9 @@ using Godot;
 using System;
 
 public partial class Game : Node2D
-{
+{	
+	
+
 	// Exported scenes for spawning
 	[Export] private PackedScene pipes;
 
@@ -14,7 +16,7 @@ public partial class Game : Node2D
 	private int score;
 
 	// Reference to the player
-	private CharacterBody2D _plane;
+	private Plane _plane;
 
 	// Random number generator
 	private RandomNumberGenerator _rng = new RandomNumberGenerator();
@@ -28,8 +30,9 @@ public partial class Game : Node2D
 		// Get reference to the ScoreLabel node
 		_scoreLabel = GetNode<Label>("ScoreLabel");
 		
-		// Get reference to the player
-		_plane = GetNode<CharacterBody2D>("Plane");
+		// Get reference to the player's plane and connect to its death signal
+		_plane = GetNode<Plane>("Plane");
+		_plane.OnPlaneDied += GameOver;
 
 		// Pipe Spawn Logic encapsulation
 		SpawnPipes();
@@ -44,7 +47,7 @@ public partial class Game : Node2D
 	{
 		// Create and configure the pipe spawn timer
 		_pipeSpawnTimer = new Timer();
-		_pipeSpawnTimer.WaitTime = 2.5f;
+		_pipeSpawnTimer.WaitTime = 2.0f;
 		_pipeSpawnTimer.OneShot = false; // Repeating timer
 		_pipeSpawnTimer.Connect("timeout", new Callable(this, nameof(SpawnRandomPipe)));
 		AddChild(_pipeSpawnTimer);
@@ -92,6 +95,15 @@ public partial class Game : Node2D
 	}
 
 	/* -------------------- Enemy Spawn Logic End -------------------- */
+
+	/* -------------------- Game Over Processing Logic Start -------------------- */
+
+	private void GameOver()
+	{
+		GD.Print("GameOver!");		
+	}
+
+	/* -------------------- Game Over Processing Logic End ---------------------- */
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
