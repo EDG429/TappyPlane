@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://724uda00mno2"]
+[gd_scene load_steps=15 format=3 uid="uid://724uda00mno2"]
 
 [ext_resource type="Texture2D" uid="uid://duay2pibv5bva" path="res://assets/background/rocks_2.png" id="1_0xcla"]
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_i0pbj"]
 [ext_resource type="PackedScene" uid="uid://dd6te2to4trvi" path="res://scenes/Plane.tscn" id="2_takgt"]
+[ext_resource type="PackedScene" uid="uid://dvjprj1jt1t0x" path="res://Main/Main.tscn" id="3_1lg0f"]
 [ext_resource type="PackedScene" uid="uid://d1xiiuh5o01oj" path="res://scenes/Pipes.tscn" id="3_youso"]
 [ext_resource type="Texture2D" uid="uid://jvrcf8b4uuyf" path="res://assets/background/sky.png" id="5_patsc"]
 [ext_resource type="FontFile" uid="uid://k23fwkstocgq" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="6_pcqif"]
@@ -20,9 +21,60 @@ font_color = Color(1, 0.243137, 0.458824, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Game" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_q7c6k"]
+resource_local_to_scene = true
+resource_name = "Font"
+font = ExtResource("6_pcqif")
+font_size = 24
+font_color = Color(1, 0.243137, 0.458824, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_tsxgg"]
+resource_name = "fadeinout"
+length = 0.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.243137, 0.458824, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_358fw"]
+loop_mode = 2
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.243137, 0.458824, 1), Color(1, 1, 1, 1), Color(1, 0.243137, 0.458824, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ydjt1"]
+_data = {
+"RESET": SubResource("Animation_358fw"),
+"fadeinout": SubResource("Animation_tsxgg")
+}
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("ResetGameLabel")]
 script = ExtResource("1_i0pbj")
 pipes = ExtResource("3_youso")
+MainScene = ExtResource("3_1lg0f")
+ResetGameLabel = NodePath("ResetGameLabel")
 
 [node name="sky" type="Sprite2D" parent="."]
 position = Vector2(289, 448)
@@ -55,11 +107,30 @@ shape = SubResource("WorldBoundaryShape2D_oc6fi")
 
 [node name="ScoreLabel" type="Label" parent="."]
 z_index = 5
-offset_left = 12.0
-offset_top = 14.0
-offset_right = 119.0
-offset_bottom = 40.0
+offset_left = 3.0
+offset_top = 11.0
+offset_right = 110.0
+offset_bottom = 37.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "Score = 0"
 label_settings = SubResource("LabelSettings_urkl4")
+
+[node name="ResetGameLabel" type="Label" parent="."]
+visible = false
+z_index = 5
+offset_left = 10.0
+offset_top = 787.0
+offset_right = 493.0
+offset_bottom = 882.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 45
+text = "PRESS SPACE TO RETURN TO THE MAIN MENU"
+label_settings = SubResource("LabelSettings_q7c6k")
+vertical_alignment = 1
+
+[node name="animationPlayer" type="AnimationPlayer" parent="ResetGameLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_ydjt1")
+}
+autoplay = "RESET"

@@ -3,10 +3,13 @@ using System;
 
 public partial class Game : Node2D
 {	
-	
+	// Boolean flags
+	private bool isGameOver = false;
 
 	// Exported scenes for spawning
 	[Export] private PackedScene pipes;
+	[Export] private PackedScene MainScene;
+	[Export] private Label ResetGameLabel;
 
 	// Timers for spawning
 	private Timer _pipeSpawnTimer;
@@ -100,7 +103,8 @@ public partial class Game : Node2D
 
 	private void GameOver()
 	{
-		GD.Print("GameOver!");		
+		
+		isGameOver = true;		
 	}
 
 	/* -------------------- Game Over Processing Logic End ---------------------- */
@@ -108,5 +112,13 @@ public partial class Game : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (isGameOver)
+		{
+			ResetGameLabel.Visible = true;
+			if (Input.IsActionJustPressed("fly"))
+			{
+				GetTree().ChangeSceneToPacked(MainScene);
+			}
+		}
 	}
 }
