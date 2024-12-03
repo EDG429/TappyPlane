@@ -8,7 +8,7 @@ public partial class Game : Node2D
 
 	// Exported scenes for spawning
 	[Export] private PackedScene pipes;
-	[Export] private PackedScene MainScene;
+	
 	[Export] private Label ResetGameLabel;
 
 	// Timers for spawning
@@ -17,6 +17,9 @@ public partial class Game : Node2D
 	// ScoreLabel reference
 	private Label _scoreLabel;
 	private int score;
+
+	// Reference to AudioStreamPlayer
+	private AudioStreamPlayer2D audioStreamPlayer2D;
 
 	// Reference to the player
 	private Plane _plane;
@@ -35,13 +38,15 @@ public partial class Game : Node2D
 		
 		// Get reference to the player's plane and connect to its death signal
 		_plane = GetNode<Plane>("Plane");
-		_plane.OnPlaneDied += GameOver;
+		SignalManager.Instance.OnPlaneDied += GameOver;
 
 		// Pipe Spawn Logic encapsulation
 		SpawnPipes();
 
 		// Enemy Spawn Logic encapsulation
 		SpawnEnemies(); // to be coded
+
+		audioStreamPlayer2D = GetNode<AudioStreamPlayer2D>("audioStreamPlayer2d");
 		
 	}
 
@@ -102,8 +107,8 @@ public partial class Game : Node2D
 	/* -------------------- Game Over Processing Logic Start -------------------- */
 
 	private void GameOver()
-	{
-		
+	{		
+		audioStreamPlayer2D.Stop();
 		isGameOver = true;		
 	}
 
@@ -117,7 +122,7 @@ public partial class Game : Node2D
 			ResetGameLabel.Visible = true;
 			if (Input.IsActionJustPressed("fly"))
 			{
-				GetTree().ChangeSceneToPacked(MainScene);
+				GameManager.LoadMain();
 			}
 		}
 	}

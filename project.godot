@@ -15,6 +15,11 @@ run/main_scene="res://Main/Main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://Globals/GameManager.cs"
+SignalManager="*res://Globals/SignalManager.cs"
+
 [display]
 
 window/size/viewport_width=480

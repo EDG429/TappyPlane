@@ -4,7 +4,7 @@ using System;
 public partial class Plane : CharacterBody2D
 {
 	// Signals
-	[Signal] public delegate void OnPlaneDiedEventHandler();
+	
 
 	// Movement and gravity properties
 	[Export] private float Gravity { get; set; } = 800.0f;
@@ -16,6 +16,7 @@ public partial class Plane : CharacterBody2D
 	// References to nodes
 	private AnimationPlayer animationPlayer;
 	private AnimatedSprite2D animatedSprite2D;
+	private AudioStreamPlayer2D audioStreamPlayer2D;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -52,7 +53,7 @@ public partial class Plane : CharacterBody2D
     {
         SetPhysicsProcess(false);		
 		animatedSprite2D.Stop();
-		EmitSignal(SignalName.OnPlaneDied);		
+		SignalManager.EmitOnPlaneDied();	
     }
 
 }

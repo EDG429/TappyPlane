@@ -5,9 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class Main : Control
 {
-	// Scenes
-	public string _gameScene = "res://scenes/World.tscn";
-
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -18,7 +16,7 @@ public partial class Main : Control
 	{
 		if (Input.IsActionJustPressed("fly"))
 		{
-			GetTree().ChangeSceneToFile(_gameScene);
+			GameManager.LoadGame();
 		}
 	}
 }
