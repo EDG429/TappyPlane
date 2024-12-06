@@ -158,7 +158,7 @@ autoplay = "fly"
 position = Vector2(163, 325)
 texture = ExtResource("6_flynd")
 
-[node name="label2" type="Label" parent="."]
+[node name="HighScoreValue" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -174,7 +174,7 @@ grow_vertical = 0
 text = "0000"
 label_settings = SubResource("LabelSettings_2ywti")
 
-[node name="label" type="Label" parent="."]
+[node name="HighScoreLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

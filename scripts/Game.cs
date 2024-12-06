@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class Game : Node2D
 {	
@@ -35,7 +36,7 @@ public partial class Game : Node2D
 
 		// Get reference to the ScoreLabel node
 		_scoreLabel = GetNode<Label>("ScoreLabel");
-		
+
 		// Get reference to the player's plane and connect to its death signal
 		_plane = GetNode<Plane>("Plane");
 		SignalManager.Instance.OnPlaneDied += GameOver;
@@ -107,10 +108,33 @@ public partial class Game : Node2D
 	/* -------------------- Game Over Processing Logic Start -------------------- */
 
 	private void GameOver()
-	{		
+{
+	// Check if the AudioStreamPlayer2D is valid before stopping it
+	if (IsInstanceValid(audioStreamPlayer2D))
+	{
 		audioStreamPlayer2D.Stop();
-		isGameOver = true;		
+		GD.Print("AudioStreamPlayer2D stopped successfully.");
 	}
+	else
+	{
+		GD.PrintErr("AudioStreamPlayer2D is null or disposed. Cannot call Stop().");
+	}
+
+	// Check if the Pipe Spawn Timer is valid before stopping it
+	if (IsInstanceValid(_pipeSpawnTimer))
+	{
+		_pipeSpawnTimer.Stop();
+		GD.Print("Pipe spawn timer stopped successfully.");
+	}
+	else
+	{
+		GD.PrintErr("Pipe spawn timer is null or disposed. Cannot call Stop().");
+	}
+
+	// Set the game over state
+	isGameOver = true;
+	GD.Print("Game over logic executed successfully.");
+}
 
 	/* -------------------- Game Over Processing Logic End ---------------------- */
 
@@ -122,8 +146,20 @@ public partial class Game : Node2D
 			ResetGameLabel.Visible = true;
 			if (Input.IsActionJustPressed("fly"))
 			{
-				GameManager.LoadMain();
+				RestartGame();
 			}
 		}
 	}
+	private async void RestartGame()
+{
+	// Relaunch the game executable
+	OS.ShellOpen(OS.GetExecutablePath());
+
+	// Wait for 0.05 seconds using a timer
+	await ToSignal(GetTree().CreateTimer(0.05f), "timeout");
+
+	// Quit the current game instance
+	GetTree().Quit();
 }
+
+}	 

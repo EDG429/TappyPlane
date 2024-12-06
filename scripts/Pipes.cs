@@ -36,7 +36,8 @@ public partial class Pipes : Node2D
 	{
 		if (body is Plane)
 		{
-			// Score increment
+			ScoreManager.AddScore(20);
+			GD.Print("Score incrmented by 20");
 		}
 	}
 

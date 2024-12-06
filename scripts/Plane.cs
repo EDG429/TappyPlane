@@ -51,6 +51,7 @@ public partial class Plane : CharacterBody2D
 	/* ------------------- Death Processing Logic Start --------------- */
     public void Die()
     {
+		GD.Print("Ded");
         SetPhysicsProcess(false);		
 		animatedSprite2D.Stop();
 		SignalManager.EmitOnPlaneDied();	

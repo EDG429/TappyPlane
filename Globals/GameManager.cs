@@ -16,8 +16,8 @@ public partial class GameManager : Node
 
 	public static void LoadMain() // static means instance level
 	{
-		Instance.GetTree().ChangeSceneToPacked(Instance._mainScene);
-	}
+		Instance.GetTree().ChangeSceneToPacked(Instance._mainScene);	
+	}	
 
 	public static void LoadGame() // static means instance level
 	{
