@@ -12,6 +12,7 @@ public partial class Plane : CharacterBody2D
 	[Export] private float HorizontalSpeed { get; set; } = 100.0f;
 	[Export] private float AltitudeThreshold { get; set; } = 25.0f;
 	[Export] private int Health {get; set;} = 100;
+	[Export] private AudioStreamPlayer2D ExplosionSound;
 
 	// References to nodes
 	private AnimationPlayer animationPlayer;
@@ -25,6 +26,9 @@ public partial class Plane : CharacterBody2D
 		// Get the AnimationPlayer node
 		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+		// Get the explosion node
+		ExplosionSound = GetNode<AudioStreamPlayer2D>("ExplosionSound");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,7 +57,8 @@ public partial class Plane : CharacterBody2D
     {
 		GD.Print("Ded");
         SetPhysicsProcess(false);		
-		animatedSprite2D.Stop();
+		animatedSprite2D.Play("explosion");
+		ExplosionSound.Play();
 		SignalManager.EmitOnPlaneDied();	
     }
 

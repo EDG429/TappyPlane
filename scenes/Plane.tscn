@@ -1,7 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://dd6te2to4trvi"]
+[gd_scene load_steps=32 format=3 uid="uid://dd6te2to4trvi"]
 
 [ext_resource type="Script" path="res://scripts/Plane.cs" id="1_py3hc"]
 [ext_resource type="Texture2D" uid="uid://cv3ddo8l6o5y8" path="res://assets/plane/planes_sheet.png" id="1_tc2ay"]
+[ext_resource type="Texture2D" uid="uid://do48mkkrfxgti" path="res://assets/PlaneExplosion/PlaneExplosion1.png" id="2_ygpjb"]
+[ext_resource type="Texture2D" uid="uid://bl83a46kg501k" path="res://assets/PlaneExplosion/PlaneExplosion2.png" id="3_yixmj"]
+[ext_resource type="Texture2D" uid="uid://gblri316l858" path="res://assets/PlaneExplosion/PlaneExplosion3.png" id="4_p4bdd"]
+[ext_resource type="Texture2D" uid="uid://dls6sqrkdv56p" path="res://assets/PlaneExplosion/PlaneExplosion4.png" id="5_q5mb5"]
+[ext_resource type="Texture2D" uid="uid://h0y0c36e8urj" path="res://assets/PlaneExplosion/PlaneExplosion5.png" id="6_2w8n6"]
+[ext_resource type="Texture2D" uid="uid://c5e82d665ypgr" path="res://assets/PlaneExplosion/PlaneExplosion6.png" id="7_ywgem"]
+[ext_resource type="Texture2D" uid="uid://cjcb1ka5t8jr2" path="res://assets/PlaneExplosion/PlaneExplosion7.png" id="8_vrtyj"]
+[ext_resource type="Texture2D" uid="uid://csgahhp2xlkqd" path="res://assets/PlaneExplosion/PlaneExplosion8.png" id="9_awh2c"]
+[ext_resource type="Texture2D" uid="uid://bkor47udkbhhp" path="res://assets/PlaneExplosion/PlaneExplosion9.png" id="10_rgw7x"]
+[ext_resource type="Texture2D" uid="uid://du2ev4yo1ilf7" path="res://assets/PlaneExplosion/PlaneExplosion10.png" id="11_bmhaw"]
+[ext_resource type="Texture2D" uid="uid://eo26ogyrmq4l" path="res://assets/PlaneExplosion/PlaneExplosion11.png" id="12_ti4ev"]
+[ext_resource type="Texture2D" uid="uid://de8mx8hguh2ei" path="res://assets/PlaneExplosion/PlaneExplosion12.png" id="13_ywxxq"]
+[ext_resource type="Texture2D" uid="uid://vcks82mnnh7x" path="res://assets/PlaneExplosion/PlaneExplosion13.png" id="14_pqwmb"]
+[ext_resource type="Texture2D" uid="uid://dwshww3r8ajnm" path="res://assets/PlaneExplosion/PlaneExplosion14.png" id="15_pbjj7"]
+[ext_resource type="Texture2D" uid="uid://dj17dh1van6ro" path="res://assets/PlaneExplosion/PlaneExplosion15.png" id="16_37717"]
+[ext_resource type="Texture2D" uid="uid://cnbiv5hnh3gtq" path="res://assets/PlaneExplosion/PlaneExplosion16.png" id="17_6ffv4"]
+[ext_resource type="Texture2D" uid="uid://h7qmw06elj6n" path="res://assets/PlaneExplosion/PlaneExplosion17.png" id="18_mmdv5"]
+[ext_resource type="Texture2D" uid="uid://v7wfxcy20k37" path="res://assets/PlaneExplosion/PlaneExplosion18.png" id="19_vmqa3"]
+[ext_resource type="Texture2D" uid="uid://2h6y3is8fi6o" path="res://assets/PlaneExplosion/PlaneExplosion19.png" id="20_w3wy1"]
+[ext_resource type="Texture2D" uid="uid://ctinyprowaorm" path="res://assets/PlaneExplosion/PlaneExplosion20.png" id="21_ar7qt"]
+[ext_resource type="AudioStream" uid="uid://bhygqr1b7lgjg" path="res://assets/audio/game_over.wav" id="23_40oeo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uiqvm"]
 atlas = ExtResource("1_tc2ay")
@@ -17,6 +38,71 @@ region = Rect2(176, 0, 88, 73)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_048u6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ygpjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yixmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p4bdd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q5mb5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2w8n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ywgem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vrtyj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_awh2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rgw7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bmhaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ti4ev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ywxxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_pqwmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_pbjj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_37717")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_6ffv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_mmdv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_vmqa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_w3wy1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ar7qt")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uiqvm")
@@ -73,15 +159,15 @@ _data = {
 "power": SubResource("Animation_rs36c")
 }
 
-[node name="Plane" type="CharacterBody2D"]
+[node name="Plane" type="CharacterBody2D" node_paths=PackedStringArray("ExplosionSound")]
 script = ExtResource("1_py3hc")
+ExplosionSound = NodePath("ExplosionSound")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_048u6")
-animation = &"fly"
+animation = &"explosion"
 autoplay = "fly"
-frame_progress = 0.869402
 
 [node name="collisionShape2d" type="CollisionShape2D" parent="."]
 scale = Vector2(0.75, 0.75)
@@ -91,3 +177,6 @@ shape = SubResource("CircleShape2D_ifxlx")
 libraries = {
 "": SubResource("AnimationLibrary_fi0of")
 }
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_40oeo")
