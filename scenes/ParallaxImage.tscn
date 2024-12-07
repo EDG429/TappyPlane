@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://w3yea1va5sma"]
+
+[ext_resource type="Script" path="res://scripts/ParallaxImage.cs" id="1_knj3e"]
+
+[node name="ParallaxImage" type="Parallax2D" node_paths=PackedStringArray("_sprite")]
+script = ExtResource("1_knj3e")
+_sprite = NodePath("sprite2d")
+
+[node name="sprite2d" type="Sprite2D" parent="."]

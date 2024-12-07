@@ -131,6 +131,26 @@ public partial class ScoreManager : Node
 		GD.PrintErr($"Failed to load high score: {e.Message}");
 	}
 }
+public void ResetHighScore()
+{
+	// Set high score to 0
+	HighScore = 0;
+	UpdateHighScoreLabel();
+
+	// Clear the high score file
+	try
+	{
+		using (var file = Godot.FileAccess.Open(HighScoreFilePath, Godot.FileAccess.ModeFlags.Write))
+		{
+			file.StoreLine("0");
+		}
+		GD.Print("High score reset to 0 and saved to file.");
+	}
+	catch (Exception e)
+	{
+		GD.PrintErr($"Failed to reset high score: {e.Message}");
+	}
+}
 	public void UpdateScoreLabel()
 	{
 		if (ScoreLabel != null)

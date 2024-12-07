@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvjprj1jt1t0x"]
+[gd_scene load_steps=16 format=3 uid="uid://dvjprj1jt1t0x"]
 
 [ext_resource type="Script" path="res://Main/Main.cs" id="1_88v1x"]
-[ext_resource type="Texture2D" uid="uid://jvrcf8b4uuyf" path="res://assets/background/sky.png" id="1_vqp3n"]
+[ext_resource type="PackedScene" uid="uid://w8a8qwpusb61" path="res://scenes/ParallaxBg/ParallaxBg.tscn" id="2_0atke"]
 [ext_resource type="FontFile" uid="uid://k23fwkstocgq" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_opsd0"]
 [ext_resource type="LabelSettings" uid="uid://bm77ay1ggj3h1" path="res://Main/TappyPlaneFont.tres" id="2_sfl14"]
 [ext_resource type="Texture2D" uid="uid://cv3ddo8l6o5y8" path="res://assets/plane/planes_sheet.png" id="4_sinyg"]
-[ext_resource type="Texture2D" uid="uid://duay2pibv5bva" path="res://assets/background/rocks_2.png" id="6_flynd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qxq5d"]
 resource_local_to_scene = true
@@ -103,7 +102,7 @@ font_color = Color(1, 0.243137, 0.458824, 1)
 shadow_size = 10
 shadow_color = Color(0, 0, 0, 1)
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" node_paths=PackedStringArray("ResetHighScoreButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,13 +110,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_88v1x")
+ResetHighScoreButton = NodePath("ResetHighScoreButton")
 
-[node name="textureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 480.0
-offset_bottom = 854.0
-texture = ExtResource("1_vqp3n")
-expand_mode = 1
+[node name="ParallaxBg" parent="." instance=ExtResource("2_0atke")]
 
 [node name="vBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -154,10 +149,6 @@ sprite_frames = SubResource("SpriteFrames_ljdb1")
 animation = &"fly"
 autoplay = "fly"
 
-[node name="bg" type="Sprite2D" parent="."]
-position = Vector2(163, 325)
-texture = ExtResource("6_flynd")
-
 [node name="HighScoreValue" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -186,3 +177,16 @@ offset_bottom = -4.0
 grow_vertical = 0
 text = "High Score:"
 label_settings = SubResource("LabelSettings_cpkqb")
+
+[node name="ResetHighScoreButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 784.0
+offset_right = 247.0
+offset_bottom = 815.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_opsd0")
+text = "Reset High Score"
+icon_alignment = 1
+expand_icon = true

@@ -7,6 +7,7 @@ public partial class Pipes : Node2D
 	[Export] private Area2D _upperPipe;
 	[Export] private Area2D _lowerPipe;
 	[Export] private Area2D _laser;
+	[Export] private AudioStreamPlayer2D ScoreSound;
 	private VisibleOnScreenNotifier2D visibleNotifier;
 
 	// Called when the node enters the scene tree for the first time.
@@ -37,6 +38,7 @@ public partial class Pipes : Node2D
 		if (body is Plane)
 		{
 			ScoreManager.AddScore(20);
+			ScoreSound.Play();
 			GD.Print("Score incrmented by 20");
 		}
 	}

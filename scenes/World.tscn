@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://724uda00mno2"]
+[gd_scene load_steps=16 format=3 uid="uid://724uda00mno2"]
 
 [ext_resource type="Texture2D" uid="uid://duay2pibv5bva" path="res://assets/background/rocks_2.png" id="1_0xcla"]
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_i0pbj"]
 [ext_resource type="PackedScene" uid="uid://dd6te2to4trvi" path="res://scenes/Plane.tscn" id="2_takgt"]
+[ext_resource type="PackedScene" uid="uid://w8a8qwpusb61" path="res://scenes/ParallaxBg/ParallaxBg.tscn" id="3_orbej"]
 [ext_resource type="PackedScene" uid="uid://d1xiiuh5o01oj" path="res://scenes/Pipes.tscn" id="3_youso"]
 [ext_resource type="Texture2D" uid="uid://jvrcf8b4uuyf" path="res://assets/background/sky.png" id="5_patsc"]
 [ext_resource type="FontFile" uid="uid://k23fwkstocgq" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="6_pcqif"]
@@ -75,11 +76,15 @@ script = ExtResource("1_i0pbj")
 pipes = ExtResource("3_youso")
 ResetGameLabel = NodePath("ResetGameLabel")
 
+[node name="ParallaxBg" parent="." instance=ExtResource("3_orbej")]
+
 [node name="sky" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(289, 448)
 texture = ExtResource("5_patsc")
 
 [node name="bg" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(163, 325)
 texture = ExtResource("1_0xcla")
 
